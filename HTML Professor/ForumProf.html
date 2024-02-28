@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            background-color: #111;
+            padding-top: 20px;
+            font-family: 'Arial';
+            color: #818181;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .content h2 {
+            color: #111;
+        }
+
+        .content p {
+            color: #333;
+        }
+
+        .content select {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .copyright {
+            color: #818181;
+            font-size: 13px;
+            text-align: center;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="InicioProf.html">Início</a>
+        <a href="ForumProf.html">Fórum</a>
+        <p class="copyright">© 2024 NexusEducation</p>
+    </div>
+
+    <div class="content">
+        <h2>Fórum</h2>
+        <p>Selecione a matéria:</p>
+        <select onchange="goToChat(this.value)">
+            <option value="">Selecione uma matéria</option>
+            <option value="Linguagens">Linguagens</option>
+            <option value="Humanas">Humanas</option>
+            <option value="Ciencias da Natureza">Ciências da Natureza</option>
+            <option value="Exatas">Exatas</option>
+        </select>
+    </div>
+
+    <script>
+        function goToChat(materia) {
+            if (materia !== "") {
+                // Redirecionar para a página de chat da matéria selecionada
+                window.location.href = `../chat Prof/Chat_${materia}.html`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="../furniture.css">
+    <link rel="stylesheet" href="../body.css">
+    <link rel="stylesheet" href="../img.css">
+    <link rel="stylesheet" href="../section.css">
+    <link rel="stylesheet" href="../dialog.css"> <!-- Adicione um arquivo CSS para a caixa de diálogo -->
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <title>Home</title>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="#home">Início</a>
+        <a href="SobreEstud.html">Sobre</a>
+        <a href="PerfilEstud.html">Perfil</a>
+		<a href="ForumEstud.html">Fórum</a>
+        <p class="copyright">© 2024 NexusEducation</p>
+
+    </div>
+
+    <div class="content">
+        <h2>Seja Bem Vindo Estudante!</h2>
+        <div class="container">
+            <img src="../assets/img/Logo.png" class="aligned-image">
+            <input type="text" id="searchInput" placeholder="Pesquisa">
+            <button type="submit" onclick="search()">Buscar</button>
+        </div>
+
+        <div class="centered">
+            <button type="button" onclick="openPostDialog()">Novo Post</button>
+        </div>
+
+        <section id="postsSection">
+        <br><br><br><br><br><br></br>
+            <div class="post">
+                <div>
+                    <strong>Usuário1 (Professor)</strong>
+                </div>
+                <p>Descrição do Post 1.</p>
+                <p><strong>Matéria1</strong></p>
+                <a href="#" onclick="downloadFile('arquivo1.txt')">arquivo1.txt</a>
+                <hr>
+            </div>
+            <div class="post">
+                <div>
+                    <strong>Usuário2 (Aluno)</strong>
+                </div>
+                <p>Descrição do Post 2.</p>
+                <p><strong>Matéria2</strong></p>
+                <a href="#" onclick="downloadFile('arquivo2.txt')">arquivo2.txt</a>
+                <hr>
+            </div>
+        </section>
+    </div>
+
+    <div id="postDialog" class="dialog">
+        <span onclick="closePostDialog()" class="close">&times;</span>
+        <h2>Novo Post</h2>
+        <div>
+            <label for="nomePost">Seu Nome:</label>
+            <input type="text" id="nomePost">
+        </div>
+        <div>
+            <label for="tipoUsuario">Você é:</label>
+            <button onclick="setUserType('Professor')" id="professorBtn">Professor</button>
+            <button onclick="setUserType('Estudante')" id="estudanteBtn">Estudante</button>
+        </div>
+        <div>
+            <label for="descricaoPost">Descrição:</label>
+            <textarea id="descricaoPost" maxlength="150"></textarea>
+        </div>
+        <div>
+            <label for="materiaPost">Matéria:</label>
+            <select id="materiaPost">
+                <option value="Espanhol">Espanhol</option>
+                <option value="Arte">Arte</option>
+                <option value="Educação Física">Educação Física</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Historia">História</option>
+                <option value="Sociologia">Sociologia</option>
+                <option value="Filosofia">Filosofia</option>
+                <option value="Química">Química</option>
+                <option value="Física">Física</option>
+                <option value="Educação Digital">Educação Digital</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Matemática">Matemática</option>
+            </select>
+        </div>
+        <div>
+            <label for="uploadFile">Upload de Arquivo:</label>
+            <input type="file" id="uploadFile">
+        </div>
+        <button onclick="submitPost()">Publicar</button>
+    </div>
+
+    <style>
+         .centered {
+            text-align: center;
+            margin-top: 90px; /* Ajuste conforme necessário */
+        }
+        hr {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            width: 1600px; /* Ajustado para ocupar 100% da largura do contêiner */
+        }
+        .post {
+            margin-bottom: 20px;
+        }
+        #professorBtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 24px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        #estudanteBtn {
+            background-color: #e7e7e7; /* Gray */
+            color: black;
+            padding: 10px 24px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        #professorBtn.selected {
+            background-color: #468749; /* Darker Green */
+        }
+        #estudanteBtn.selected {
+            background-color: #aaa; /* Darker Gray */
+        }
+    </style>
+
+    <script>
+        let userType = ""; // Variável para armazenar o tipo de usuário
+
+        function search() {
+            // Adicione a lógica de busca aqui
+        }
+
+        function openPostDialog() {
+            document.getElementById("postDialog").style.display = "block";
+        }
+
+        function closePostDialog() {
+            document.getElementById("postDialog").style.display = "none";
+        }
+
+        function setUserType(type) {
+            userType = type;
+            // Remover a classe 'selected' de ambos os botões
+            document.getElementById("professorBtn").classList.remove("selected");
+            document.getElementById("estudanteBtn").classList.remove("selected");
+            // Adicionar a classe 'selected' apenas ao botão clicado
+            document.getElementById(type.toLowerCase() + "Btn").classList.add("selected");
+        }
+
+        function submitPost() {
+    // Verificar se um tipo de usuário foi selecionado
+    if (userType === "") {
+        alert("Por favor, selecione se você é um Professor ou um Estudante.");
+        return; // Impede o envio do post se o tipo de usuário não for selecionado
+    }
+
+    // Adicione a lógica para processar e exibir o novo post
+    const nome = document.getElementById("nomePost").value;
+    const descricao = document.getElementById("descricaoPost").value;
+    const materia = document.getElementById("materiaPost").value;
+    const fileInput = document.getElementById("uploadFile");
+    const file = fileInput.files[0];
+
+    const postsSection = document.getElementById("postsSection");
+    const postElement = document.createElement("div");
+    postElement.innerHTML = `
+        <div>
+            <strong>${nome} (${userType})</strong> <!-- Adiciona o tipo de usuário ao lado do nome -->
+            <p>${descricao}</p>
+            <p><strong>${materia}</strong></p>
+            <a href="#" onclick="downloadFile('${file.name}')">${file.name}</a>
+            <hr>
+        </div>
+    `;
+    postsSection.appendChild(postElement);
+
+    // Fechar a caixa de diálogo
+    closePostDialog();
+}
+
+
+        function downloadFile(fileName) {
+            // Simule o download, você pode adicionar a lógica real do download aqui
+            alert(`Simulando download do arquivo: ${fileName}`);
+        }
+		
+		
+    </script>
+	    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>

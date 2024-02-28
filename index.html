@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #2c3338;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center; /* Centraliza o conteúdo */
+    }
+
+    .button {
+      background-color: #606468;
+      color: white;
+      border: none;
+      padding: 12px 24px; /* Ajuste de tamanho dos botões */
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #4d5256;
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    .form h2 {
+      margin-bottom: 20px;
+    }
+
+    .form div {
+      margin-bottom: 15px;
+      text-align: center; /* Centraliza os elementos do formulário */
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form input[type="text"],
+    .form input[type="password"] {
+      width: 100%;
+      padding: 10px; /* Ajuste de tamanho dos campos de entrada */
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #444;
+      color: white;
+      box-sizing: border-box; /* Garante que o padding não aumente o tamanho total do elemento */
+    }
+
+    .form input[type="submit"] {
+      width: 100%;
+      padding: 12px; /* Ajuste de tamanho do botão de envio */
+      border: none;
+      border-radius: 5px;
+      background-color: #606468;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form input[type="submit"]:hover {
+      background-color: #4d5256;
+    }
+
+    .logo-container {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .aligned-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="assets/img/Logo.png" class="aligned-image">
+    </div>
+    <!-- Botões para seleção de tipo de usuário -->
+    <button class="button" onclick="showLoginForm('studentLoginForm')">Sou Estudante</button>
+    <button class="button" onclick="showLoginForm('teacherLoginForm')">Sou Professor</button>
+
+    <!-- Formulário de login para estudante -->
+    <form id="studentLoginForm" class="form login" onsubmit="validateStudentForm(event)">
+      <h2>Sou Estudante</h2>
+      <div>
+        <label for="studentUsername">Username</label>
+        <input id="studentUsername" type="text" name="username" placeholder="Username" required>
+      </div>
+
+      <div>
+        <label for="studentPassword">Password</label>
+        <input id="studentPassword" type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <div>
+        <input type="submit" value="Sign In">
+      </div>
+    </form>
+
+    <!-- Formulário de login para professor -->
+    <form id="teacherLoginForm" class="form login" onsubmit="validateTeacherForm(event)">
+      <h2>Sou Professor</h2>
+      <div>
+        <label for="teacherUsername">Username</label>
+        <input id="teacherUsername" type="text" name="username" placeholder="Username" required>
+      </div>
+
+      <div>
+        <label for="teacherPassword">Password</label>
+        <input id="teacherPassword" type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <div>
+        <input type="submit" value="Sign In">
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showLoginForm(formId) {
+      // Mostra apenas o formulário selecionado e oculta os outros
+      var forms = document.querySelectorAll('.form');
+      forms.forEach(function(form) {
+        form.classList.remove('active');
+      });
+      document.getElementById(formId).classList.add('active');
+    }
+
+    function validateStudentForm(event) {
+      event.preventDefault(); // Evita o envio padrão do formulário
+
+      var username = document.getElementById("studentUsername").value;
+      var password = document.getElementById("studentPassword").value;
+
+      // Verifica se o login é válido (fictício)
+      if (username === "user" && password === "123") {
+        window.location.href = "HTML Estudante/PerfilEstud.html"; // Redireciona para o painel do aluno
+      } else {
+        alert("Credenciais inválidas para aluno.");
+      }
+    }
+
+    function validateTeacherForm(event) {
+      event.preventDefault(); // Evita o envio padrão do formulário
+
+      var username = document.getElementById("teacherUsername").value;
+      var password = document.getElementById("teacherPassword").value;
+
+      // Verifica se o login é válido (fictício)
+      if (username === "user" && password === "123") {
+        window.location.href = "HTML Professor/PerfilProf.html"; // Redireciona para o painel do professor
+      } else {
+        alert("Credenciais inválidas para professor.");
+      }
+    }
+  </script>
+</body>
+
+</html>

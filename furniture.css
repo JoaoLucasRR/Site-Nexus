@@ -1,0 +1,39 @@
+.content {
+    margin-left: 250px;
+    padding: 16px;
+	
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 16px;}
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  width: 90px;
+  height: 40px;
+  background-color: #e7ecee;
+}
+
+button:hover {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+}
+
+.container {
+  position: absolute;
+  top: 7%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  }

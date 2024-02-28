@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../avatarOptions.css">
+    <link rel="stylesheet" href="../furniture.css">
+    <link rel="stylesheet" href="../body.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="../section.css">
+    <link rel="stylesheet" href="../dialog.css">
+    <title>Profile</title>
+
+</head>
+
+<body>
+    <!-- Avatar e seta -->
+    <div id="avatar">
+        <img id="avatarImage" src="assets/avatars/default_male.png" alt="Avatar">
+    </div>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <a href="InicioProf.html">Início</a>
+        <a href="SobreProf.html">Sobre</a>
+        <a href="#perfil">Perfil</a>
+        <p class="copyright">© 2024 NexusEducation</p>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        <h2 id="saudacao">Painel do Professor</h2>
+        <div class="container">
+            <img src="../assets/img/Logo.png" class="aligned-image" id="logoImage">
+            <input type="text" id="searchInput" placeholder="Pesquisa">
+            <button type="submit" onclick="search()">Buscar</button>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <section id="perfil">
+    <h3>Perfil do Professor</h3>
+    <p>Nome: <span id="nome">[Seu Nome]</span></p>
+    <p>Email: <span id="email">[Seu Email]</span></p>
+    <p>Localização: <span id="localizacao">[Sua Localização]</span></p>
+    <p>Gênero: <span id="genero">[Seu Gênero]</span></p>
+    <p>Matéria: <span id="materia">[Sua Matéria]</span></p>
+    <button onclick="openDialog()">Editar Perfil</button>
+</section>
+
+        <div id="dialog" class="dialog">
+            <span onclick="closeDialog()" class="close">&times;</span>
+            <h2>Editar Perfil</h2>
+            <div>
+                <label for="novoNome">Novo Nome:</label>
+                <input type="text" id="novoNome">
+            </div>
+            <div>
+                <label for="novoEmail">Novo Email:</label>
+                <input type="text" id="novoEmail">
+            </div>
+            <div>
+                <label for="novaLocalizacao">Nova Localização:</label>
+                <select id="novaLocalizacao">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+              <option value="DF">Distrito Federal</option>
+                </select>
+            </div>
+            <div>
+                <label for="novoGenero">Novo Gênero:</label>
+                <select id="novoGenero" onchange="changeAvatar()">
+                    <option value="masculino">Gênero</option>
+					<option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+            </div>
+			<div>
+    <label for="novaMateria">Matéria:</label>
+    <select id="novaMateria">
+        <option value="Espanhol">Espanhol</option>
+                <option value="Arte">Arte</option>
+                <option value="Educação Física">Educação Física</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Historia">História</option>
+                <option value="Sociologia">Sociologia</option>
+                <option value="Filosofia">Filosofia</option>
+                <option value="Química">Química</option>
+                <option value="Física">Física</option>
+                <option value="Educação Digital">Educação Digital</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Matemática">Matemática</option>
+    </select>
+</div>
+
+            <button onclick="editProfile()">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        function changeAvatar() {
+            var novoGenero = document.getElementById("novoGenero").value;
+            var avatarImage = document.getElementById("avatarImage");
+            if (novoGenero === "masculino") {
+                avatarImage.src = "../assets/img/AvatarProfM.png";
+            } else if (novoGenero === "feminino") {
+                avatarImage.src = "../assets/img/AvatarProfF.png";
+            } else {
+                avatarImage.src = "../assets/img/other_avatar.png";
+            }
+        }
+
+        function search() {
+            // Adicione a lógica de busca aqui
+        }
+
+        function openDialog() {
+            document.getElementById("dialog").style.display = "block";
+        }
+
+        function closeDialog() {
+            document.getElementById("dialog").style.display = "none";
+        }
+
+        function editProfile() {
+    // Obter entradas do usuário para cada item do perfil
+    var novoNome = document.getElementById("novoNome").value || "[Seu Nome]";
+    var novoEmail = document.getElementById("novoEmail").value || "[Seu Email]";
+    var novaLocalizacao = document.getElementById("novaLocalizacao").value || "[Sua Localização]";
+    var novoGenero = document.getElementById("novoGenero").value || "[Seu Gênero]";
+    var novaMateria = document.getElementById("novaMateria").value || "[Sua Matéria]";
+
+    // Atualizar os elementos HTML com as novas informações
+    document.getElementById("nome").innerText = novoNome;
+    document.getElementById("email").innerText = novoEmail;
+    document.getElementById("localizacao").innerText = novaLocalizacao;
+    document.getElementById("genero").innerText = novoGenero;
+    document.getElementById("materia").innerText = novaMateria;
+
+
+    // Fechar a caixa de diálogo
+    closeDialog();
+}
+
+// Função para salvar os dados do perfil no armazenamento local
+function salvarPerfil() {
+    const novoNome = document.getElementById("novoNome").value;
+    const novoEmail = document.getElementById("novoEmail").value;
+    const novaLocalizacao = document.getElementById("novaLocalizacao").value;
+    const novoGenero = document.getElementById("novoGenero").value;
+    const novaMateria = document.getElementById("novaMateria").value;
+
+    // Salvar os dados do perfil no armazenamento local
+    localStorage.setItem("nome", novoNome);
+    localStorage.setItem("email", novoEmail);
+    localStorage.setItem("localizacao", novaLocalizacao);
+    localStorage.setItem("genero", novoGenero);
+    localStorage.setItem("materia", novaMateria);
+}
+
+// Função para carregar os dados do perfil do armazenamento local
+function carregarPerfil() {
+    // Verificar se os dados do perfil estão armazenados localmente
+    if (localStorage.getItem("nome")) {
+        // Se estiverem, carregue os dados do perfil
+        document.getElementById("nome").innerText = localStorage.getItem("nome");
+        document.getElementById("email").innerText = localStorage.getItem("email");
+        document.getElementById("localizacao").innerText = localStorage.getItem("localizacao");
+        document.getElementById("genero").innerText = localStorage.getItem("genero");
+        document.getElementById("materia").innerText = localStorage.getItem("materia");
+    }
+}
+
+// Chame a função carregarPerfil() ao carregar a página para carregar os dados do perfil
+carregarPerfil();
+
+    </script>
+</body>
+
+</html>
